@@ -3,7 +3,7 @@ from main import BooksCollector
 
 
 @pytest.fixture
-def book_name_favorite_exists():
+def book_name_not_exists():
     return 'Трава у дома'
 
 @pytest.fixture
@@ -11,7 +11,7 @@ def book_name_exists_in_list_books_genre():
     return "Дюна"
 
 @pytest.fixture
-def book_name_favorite_exists():
+def book_name_not_exists():
     return "Тотошка"
 
 @pytest.fixture

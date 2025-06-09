@@ -4,6 +4,15 @@ from main import BooksCollector
 # класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
 # обязательно указывать префикс Test
 class TestBooksCollector:
+    def test_add_new_book(
+        self,
+        collector_example,
+        book_name_not_exists
+        ):
+
+        collector_example.add_new_book(book_name_not_exists)
+        assert book_name_not_exists in collector_example.books_genre
+
     @pytest.mark.parametrize('genre', ['Ужасы'])
     def test_set_book_genre_if_genre_exists(
         self,
@@ -73,21 +82,21 @@ class TestBooksCollector:
 
     def test_delete_book_from_favorites_if_book_exists(
             self,
-            book_name_favorite_exists,
+            book_name_not_exists,
             collector_example
             ):
         
-        collector_example.delete_book_from_favorites(book_name_favorite_exists)
-        assert book_name_favorite_exists not in collector_example.get_list_of_favorites_books()
+        collector_example.delete_book_from_favorites(book_name_not_exists)
+        assert book_name_not_exists not in collector_example.get_list_of_favorites_books()
 
     def test_delete_book_from_favorites_if_book_not_exists(
             self,
-            book_name_favorite_exists,
+            book_name_not_exists,
             collector_example
             ):
         
-        collector_example.delete_book_from_favorites(book_name_favorite_exists)
-        assert book_name_favorite_exists not in collector_example.get_list_of_favorites_books()
+        collector_example.delete_book_from_favorites(book_name_not_exists)
+        assert book_name_not_exists not in collector_example.get_list_of_favorites_books()
 
     def test_get_list_of_favorites_books(
             self,
