@@ -8,32 +8,28 @@ def book_name_not_exists():
 
 @pytest.fixture
 def book_name_exists_in_list_books_genre():
-    return "Дюна"
-
-@pytest.fixture
-def book_name_not_exists():
-    return "Тотошка"
+    return 'Дюна'
 
 @pytest.fixture
 def children_books():
-    return ["Дюна", "Остров сокровищ", "Аэроплан"]
+    return ['Дюна', 'Остров сокровищ', 'Аэроплан']
 
 @pytest.fixture
 def list_books_favorites():
     return [
-        'Я и мои друзья',
-        'Тотошка',
-        'Дерево'
+        'Дюна',
+        'Оно',
+        'Шерлок Холмс'
     ]
 
 @pytest.fixture
 def dict_books_genre():
     return {
-        "Дюна": "Фантастика",
-        "Оно": "Ужасы",
-        "Шерлок Холмс": "Детективы",
-        "Остров сокровищ": "Мультфильмы",
-        "Аэроплан": "Комедии"
+        'Дюна': 'Фантастика',
+        'Оно': 'Ужасы',
+        'Шерлок Холмс': 'Детективы',
+        'Остров сокровищ': 'Мультфильмы',
+        'Аэроплан': 'Комедии'
         }
 
 @pytest.fixture
@@ -43,6 +39,11 @@ def collector_example(
     ):
 
     collector = BooksCollector()
-    collector.books_genre = dict_books_genre
-    collector.favorites = list_books_favorites
+    for name, genre in dict_books_genre.items():
+        collector.add_new_book(name)
+        collector.set_book_genre(name, genre)
+
+    for book_name in list_books_favorites:
+        collector.add_book_in_favorites(book_name)
+
     return collector
