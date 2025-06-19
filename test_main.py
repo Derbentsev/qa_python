@@ -11,7 +11,7 @@ class TestBooksCollector:
         ):
 
         collector_example.add_new_book(book_name_not_exists)
-        assert book_name_not_exists in collector_example.books_genre
+        assert book_name_not_exists in collector_example.get_books_genre()
 
     @pytest.mark.parametrize('genre', ['Ужасы'])
     def test_set_book_genre_if_genre_exists(
@@ -22,7 +22,7 @@ class TestBooksCollector:
         ):
 
         collector_example.set_book_genre(book_name_exists_in_list_books_genre, genre)
-        assert collector_example.books_genre[book_name_exists_in_list_books_genre] == genre
+        assert collector_example.get_books_genre()[book_name_exists_in_list_books_genre] == genre
 
     @pytest.mark.parametrize('genre', ['Казино'])
     def test_set_book_genre_if_genre_not_exists(
@@ -33,7 +33,7 @@ class TestBooksCollector:
         ):
 
         collector_example.set_book_genre(book_name_exists_in_list_books_genre, genre)
-        assert collector_example.books_genre[book_name_exists_in_list_books_genre] != genre
+        assert collector_example.get_books_genre()[book_name_exists_in_list_books_genre] != genre
 
     @pytest.mark.parametrize('name, genre', [['Дюна', 'Фантастика']])
     def test_get_book_genre_success(
